@@ -1,12 +1,14 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
+import "./index.css";
+
 import store from "./redux";
 import { Provider } from "react-redux";
 
-import AllGuilds from "./allGuilds";
-import GuildView from "./guildView";
-import NotFound from "./notFound";
+import AllGuilds from "./components/allGuilds";
+import GuildView from "./components/guildView";
+import NotFound from "./components/notFound";
 
 function App() {
     return (

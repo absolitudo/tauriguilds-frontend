@@ -1,7 +1,7 @@
 import React from "react";
 
 function GuildView(props) {
-    return <div>{props.match.params.guildName}</div>;
+    return <div>the guilds</div>;
 }
 
 export default GuildView;
