@@ -1,25 +1,34 @@
 import React from "react";
 import { connect } from "react-redux";
 
+// TEMPORARY FOR DEV
+import data from "./data.json";
+
 import SearchIcon from "../../../assets/search-icon";
-import GuildView from "../guildView";
+import ShowGuilds from "../showGuilds";
 
 import { fillCompactGuildsData } from "../../redux/actions";
 import { bindActionCreators } from "redux";
 
 class AllGuilds extends React.PureComponent {
+    constructor(props) {
+        super(props);
+        this.submitSearch = this.submitSearch.bind(this);
+    }
+
     componentDidMount() {
+        this.props.fillCompactGuildsData(data);
         /*
         fetch("https://ossified-hyacinth.glitch.me/getGuilds")
             .then(res => res.json())
             .then(res => this.props.fillCompactGuildsData(res));
-        */
+            */
     }
 
     submitSearch(e) {
         e.preventDefault();
         const guildName = e.target.guildName.value;
-        console.log(guildName);
+        this.props.history.push(`guild/${guildName}`);
     }
 
     render() {
@@ -41,14 +50,10 @@ class AllGuilds extends React.PureComponent {
                     </div>
                 </form>
 
-                <GuildView />
+                <ShowGuilds />
             </main>
         );
     }
-}
-
-function mapStateToProps(state) {
-    return { compactGuilds: state.mainReducer.compactGuilds };
 }
 
 function mapDispatchToProps(dispatch) {
@@ -56,6 +61,6 @@ function mapDispatchToProps(dispatch) {
 }
 
 export default connect(
-    mapStateToProps,
+    null,
     mapDispatchToProps
 )(AllGuilds);

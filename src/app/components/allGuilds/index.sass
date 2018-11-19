@@ -1,6 +1,7 @@
 .frontpage
     #search-guild
         margin-top: 250px
+        padding: 0px 20px
         .input-wrapper
             margin: auto
             width: 100%
@@ -20,4 +21,62 @@
                 background: none
                 border: none
                 cursor: pointer
-                
+    .guilds-container
+        padding: 20px
+        text-align: center
+        .guild-card
+            margin: 20px
+            width: 280px
+            height: 280px
+            background-size: contain !important
+            cursor: pointer
+            position: relative
+            display: inline-block
+            
+            &-alliance
+                box-shadow: 0 3px 6px rgba(0,0,255,0.36), 0 3px 6px rgba(0,0,255,0.46);
+                background: url("../assets/alliance.jpg")
+            &-horde
+                box-shadow: 0 3px 6px rgba(255,0,0,0.36), 0 3px 6px rgba(255,0,0,0.46);
+                background: url("../assets/horde.jpg")
+            &-shader
+                background-color: black
+                opacity: 0.6
+                position: absolute
+                top: 0
+                left: 0
+                height: 100%
+                width: 100%
+            
+            &-info
+                position: absolute
+                top: 0
+                left: 0
+                width: 100%
+                height: 100%
+                text-align: center
+                *
+                    color: #ddd
+                    padding: 0
+                    margin: 0
+                &-name
+                    margin-top: 10px
+                    font-size: 24px
+                    color: white
+                    white-space: nowrap
+                    text-overflow: ellipsis
+                    overflow: hidden
+                    padding: 0px 5px
+                &-realm
+                    font-size: 10px
+                &-progress
+                    margin-top: 90px
+                    font-size: 18px
+                &-members
+                    margin-top: 95px
+                    font-size: 13px
+
+@media(max-width: 360px)
+    .guild-card
+        margin: 20px 0px !important
+
