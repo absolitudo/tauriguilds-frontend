@@ -1,0 +1,58 @@
+.guilds-container
+    padding: 20px
+    text-align: center
+    .guild-card
+        margin: 20px
+        width: 280px
+        height: 280px
+        background-size: contain !important
+        cursor: pointer
+        position: relative
+        display: inline-block
+        
+        &-alliance
+            @include default-shadow(0, 0, 200)
+            background: url("../assets/alliance.jpg")
+        &-horde
+            @include default-shadow(200, 0, 0)
+            background: url("../assets/horde.jpg")
+        &-shader
+            background-color: black
+            opacity: 0.6
+            position: absolute
+            top: 0
+            left: 0
+            height: 100%
+            width: 100%
+        
+        &-info
+            position: absolute
+            top: 0
+            left: 0
+            width: 100%
+            height: 100%
+            text-align: center
+            *
+                color: $light
+                padding: 0
+                margin: 0
+            &-name
+                margin-top: 10px
+                font-size: 24px
+                color: white
+                white-space: nowrap
+                text-overflow: ellipsis
+                overflow: hidden
+                padding: 0px 5px
+            &-realm
+                font-size: 10px
+            &-progress
+                margin-top: 90px
+                font-size: 18px
+            &-members
+                margin-top: 95px
+                font-size: 13px
+
+@media(max-width: 360px)
+    .guild-card
+        margin: 20px 0px !important

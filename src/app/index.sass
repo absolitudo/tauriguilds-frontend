@@ -1,11 +1,19 @@
-$dark: #232323
 @import url('https://fonts.googleapis.com/css?family=Roboto');
+$dark: #232323
+$light: #F9F9FA
+
+@mixin default-shadow($red, $green, $blue)
+    box-shadow: 0 2px 5px rgba($red, $green, $blue, 0.16), 0 2px 5px rgba($red, $green, $blue, 0.23)
 
 @import "./components/allGuilds/index.sass"
-    
+@import "./components/showGuilds/index.sass"
+
+
+
 body
     padding: 0px
     margin: 0px
+    background-color: $light
 *
     box-sizing: border-box
     color: $dark
