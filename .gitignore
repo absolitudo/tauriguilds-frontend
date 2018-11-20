@@ -25,3 +25,4 @@ yarn-error.log*
 .vscode
 
 src/**/*.css
+src/app/components/allGuilds/data.json

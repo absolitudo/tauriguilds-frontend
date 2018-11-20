@@ -4,18 +4,13 @@ import { connect } from "react-redux";
 // TEMPORARY FOR DEV
 import data from "./data.json";
 
-import SearchIcon from "../../../assets/search-icon";
 import ShowGuilds from "../showGuilds";
+import SearchGuild from "../searchGuild";
 
 import { fillCompactGuildsData } from "../../redux/actions";
 import { bindActionCreators } from "redux";
 
 class AllGuilds extends React.PureComponent {
-    constructor(props) {
-        super(props);
-        this.submitSearch = this.submitSearch.bind(this);
-    }
-
     componentDidMount() {
         this.props.fillCompactGuildsData(data);
         /*
@@ -25,31 +20,10 @@ class AllGuilds extends React.PureComponent {
             */
     }
 
-    submitSearch(e) {
-        e.preventDefault();
-        const guildName = e.target.guildName.value;
-        this.props.history.push(`guild/${guildName}`);
-    }
-
     render() {
         return (
             <main className="frontpage">
-                <form onSubmit={this.submitSearch} id="search-guild">
-                    <div className="input-wrapper">
-                        <input
-                            name="guildName"
-                            type="text"
-                            required
-                            className="input-search"
-                            placeholder="Search guild..."
-                            autoComplete="off"
-                        />
-                        <button type="submit" className="button-search">
-                            <SearchIcon />
-                        </button>
-                    </div>
-                </form>
-
+                <SearchGuild />
                 <ShowGuilds />
             </main>
         );
