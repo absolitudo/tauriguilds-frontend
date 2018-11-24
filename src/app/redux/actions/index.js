@@ -1,6 +1,13 @@
-export function fillCompactGuildsData(payload) {
+export function fillGuildsData(payload) {
     return {
-        type: "FILL_COMPACT_GUILDS_DATA",
+        type: "FILL_GUILDS_DATA",
+        payload
+    };
+}
+
+export function changeFilter(payload) {
+    return {
+        type: "CHANGE_FILTER",
         payload
     };
 }
