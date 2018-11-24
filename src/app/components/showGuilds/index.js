@@ -1,12 +1,13 @@
 import React from "react";
 import { connect } from "react-redux";
-
 import { Link } from "react-router-dom";
+
+import currentInstance from "../../../constants/currentInstance";
 
 function ShowGuilds(props) {
     return (
         <div className="guilds-container">
-            {props.compactGuilds.map((guild, index) => (
+            {props.guilds.map((guild, index) => (
                 <Link
                     to={"/guild/" + guild.guildName}
                     key={index}
@@ -22,7 +23,7 @@ function ShowGuilds(props) {
                         </p>
                         <p className="guild-card-info-realm">{guild.realm}</p>
                         <p className="guild-card-info-progress">
-                            TOT {guild.currentProgress}
+                            {currentInstance} {guild.currentProgress}
                         </p>
                         <p className="guild-card-info-members">
                             {guild.guildMembersCount} members
@@ -35,7 +36,7 @@ function ShowGuilds(props) {
 }
 
 function mapStateToProps(state) {
-    return { compactGuilds: state.mainReducer.compactGuilds };
+    return { guilds: state.guildData.guilds };
 }
 
 export default connect(mapStateToProps)(ShowGuilds);

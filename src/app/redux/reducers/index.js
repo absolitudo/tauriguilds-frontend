@@ -1,6 +1,8 @@
-import mainReducer from "./mainReducer";
+import guildDataReducer from "./guildDataReducer";
+import filterGuildsReducer from "./filterGuildsReducer";
 import { combineReducers } from "redux";
 
 export default combineReducers({
-    mainReducer
+    guildData: guildDataReducer,
+    guildFilter: filterGuildsReducer
 });
