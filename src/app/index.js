@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
-import "./index.css";
+import "./index.sass";
 
 import store from "./redux";
 import { Provider } from "react-redux";
