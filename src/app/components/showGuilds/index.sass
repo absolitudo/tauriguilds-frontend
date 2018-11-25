@@ -1,10 +1,10 @@
 .guilds-container
-    padding: 20px
+    padding: 20px 10px
     text-align: center
     .guild-card
         margin: 20px
-        width: 280px
-        height: 280px
+        width: 270px
+        height: 270px
         background-size: contain !important
         cursor: pointer
         position: relative
@@ -50,12 +50,12 @@
             &-realm
                 font-size: 10px
             &-progress
-                margin-top: 90px
+                margin-top: 80px
                 font-size: 18px
             &-members
                 margin-top: 95px
                 font-size: 13px
 
-@media(max-width: 360px)
+@media(max-width: $mobile-brakepoint)
     .guild-card
         margin: 20px 0px !important
