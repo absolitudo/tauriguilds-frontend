@@ -10,6 +10,7 @@ import Input from "@material-ui/core/Input";
 import servers from "../../../constants/servers";
 import factions from "../../../constants/factions";
 import currentInstance from "../../../constants/currentInstance";
+import { serversToArr, hcArr } from "./helpers";
 
 import { changeFilter } from "../../redux/actions";
 
@@ -42,7 +43,7 @@ class FiltersForm extends React.PureComponent {
                         input={<Input name="server" id="select-server" />}
                         className="select"
                     >
-                        {servers.map(serverName => (
+                        {serversToArr(servers).map(serverName => (
                             <MenuItem key={serverName} value={serverName}>
                                 {serverName}
                             </MenuItem>
@@ -107,14 +108,6 @@ class FiltersForm extends React.PureComponent {
             </form>
         );
     }
-}
-
-function hcArr() {
-    const arr = [];
-    for (let i = 0; i < 13; i++) {
-        arr.push(i.toString());
-    }
-    return arr;
 }
 
 function mapStateToProps(state) {

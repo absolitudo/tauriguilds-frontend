@@ -3,11 +3,12 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
 import currentInstance from "../../../constants/currentInstance";
+import applyFilters from "./helpers";
 
 function ShowGuilds(props) {
     return (
         <div className="guilds-container">
-            {props.guilds.map((guild, index) => (
+            {applyFilters(props.guilds, props.filters).map((guild, index) => (
                 <Link
                     to={"/guild/" + guild.guildName}
                     key={index}
@@ -36,7 +37,7 @@ function ShowGuilds(props) {
 }
 
 function mapStateToProps(state) {
-    return { guilds: state.guildData.guilds };
+    return { guilds: state.guildData.guilds, filters: state.guildFilter };
 }
 
 export default connect(mapStateToProps)(ShowGuilds);

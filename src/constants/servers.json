@@ -1,6 +1,6 @@
-[
-    "All",
-    "Tauri",
-    "Evermoon",
-    "WOD"
-]
+{
+    "All": true,
+    "Tauri": "[HU] Tauri WoW Server",
+    "Evermoon": "[EN] Evermoon",
+    "WOD": "[HU] Warriors of Darkness"
+}
