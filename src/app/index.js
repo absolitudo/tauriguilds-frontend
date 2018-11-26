@@ -16,11 +16,7 @@ function App() {
             <Router>
                 <Switch>
                     <Route exact path="/" component={AllGuilds} />
-                    <Route
-                        exact
-                        path="/guild/:guildName"
-                        component={GuildView}
-                    />
+                    <Route exact path="/guild" component={GuildView} />
                     <Route component={NotFound} />
                 </Switch>
             </Router>
