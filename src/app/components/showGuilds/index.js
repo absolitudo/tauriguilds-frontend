@@ -3,14 +3,20 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
 import currentInstance from "../../../constants/currentInstance";
-import applyFilters from "./helpers";
+import { applyFilters } from "./helpers";
+import { convertServerName } from "./helpers";
 
 function ShowGuilds(props) {
     return (
         <div className="guilds-container">
             {applyFilters(props.guilds, props.filters).map((guild, index) => (
                 <Link
-                    to={"/guild/" + guild.guildName}
+                    to={
+                        "/guild?server=" +
+                        convertServerName(guild.realm) +
+                        "&guildName=" +
+                        guild.guildName
+                    }
                     key={index}
                     className={
                         "guild-card guild-card-" +

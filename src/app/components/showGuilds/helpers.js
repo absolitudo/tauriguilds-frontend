@@ -1,7 +1,7 @@
 import factions from "../../../constants/factions";
 import servers from "../../../constants/servers";
 
-function applyFilters(guilds, filters) {
+export function applyFilters(guilds, filters) {
     guilds = guilds.filter(guild => {
         // checks if current progression of guild is higher than stated
         if (!(getCurrProgNum(guild.currentProgress) >= filters.hc)) {
@@ -53,4 +53,12 @@ function getCurrProgNum(currentProgress) {
     return Number(/^\d+/.exec(currentProgress));
 }
 
-export default applyFilters;
+export function convertServerName(serverName) {
+    for (let server in servers) {
+        if (servers[server] === serverName) {
+            return server.toLowerCase();
+        }
+    }
+
+    return "tauri";
+}
