@@ -8,7 +8,6 @@ import SearchIcon from "../../../assets/search-icon";
 
 import servers from "../../../constants/servers";
 import { serversToArr } from "./helpers";
-delete servers["All"]; // don't want to display this here
 
 class SearchForm extends React.PureComponent {
     constructor(props) {
@@ -60,7 +59,7 @@ class SearchForm extends React.PureComponent {
                         }
                         className="select"
                     >
-                        {serversToArr(servers).map(serverName => (
+                        {serversToArr(servers, 0).map(serverName => (
                             <MenuItem key={serverName} value={serverName}>
                                 {serverName}
                             </MenuItem>
