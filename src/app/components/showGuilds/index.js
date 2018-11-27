@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
-import currentInstance from "../../../constants/currentInstance";
+import { name as currentRaid } from "../../../constants/currentRaid";
 import { applyFilters } from "./helpers";
 import { convertServerName } from "./helpers";
 
@@ -30,7 +30,7 @@ function ShowGuilds(props) {
                         </p>
                         <p className="guild-card-info-realm">{guild.realm}</p>
                         <p className="guild-card-info-progress">
-                            {currentInstance} {guild.currentProgress}
+                            {guild.progression[currentRaid].abbreviation}
                         </p>
                         <p className="guild-card-info-members">
                             {guild.guildMembersCount} members

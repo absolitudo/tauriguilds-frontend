@@ -9,7 +9,7 @@ import Input from "@material-ui/core/Input";
 
 import servers from "../../../constants/servers";
 import factions from "../../../constants/factions";
-import currentInstance from "../../../constants/currentInstance";
+import { abbreviation as currentRaid } from "../../../constants/currentRaid";
 import { serversToArr, hcArr } from "./helpers";
 
 import { changeFilter } from "../../redux/actions";
@@ -74,7 +74,7 @@ class FiltersForm extends React.PureComponent {
 
                 <FormControl className="filter">
                     <InputLabel className="select-label" htmlFor="select-hc">
-                        {currentInstance} HC >=
+                        {currentRaid} HC >=
                     </InputLabel>
                     <Select
                         value={this.props.guildFilter.hc}

@@ -26,3 +26,4 @@ yarn-error.log*
 
 src/**/*.css
 src/app/components/allGuilds/data.json
+src/app/components/guildView/data.json
