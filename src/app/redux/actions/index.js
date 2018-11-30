@@ -11,3 +11,10 @@ export function changeFilter(payload) {
         payload
     };
 }
+
+export function fillSelectedGuildData(payload) {
+    return {
+        type: "FILL_SELECTED_GUILD_DATA",
+        payload
+    };
+}
