@@ -1,7 +1,16 @@
 import tmpServers from "../../../constants/servers.json";
-let servers = {};
-for (let server in tmpServers) {
-    servers[server.toLocaleLowerCase()] = tmpServers[server];
+
+function serversToLower() {
+    let servers = {};
+    for (let server in tmpServers) {
+        servers[server.toLocaleLowerCase()] = tmpServers[server];
+    }
+    return servers;
 }
 
-export { servers };
+function mapInstanceToPicture(raidName) {
+    const raidInfo = require("../../../constants/raidInfo.json");
+    return require("../../../assets/" + raidInfo[raidName].picture);
+}
+
+export { serversToLower, mapInstanceToPicture };

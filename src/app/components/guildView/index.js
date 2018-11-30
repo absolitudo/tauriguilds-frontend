@@ -1,9 +1,11 @@
 import React from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { servers } from "./helpers";
+import { serversToLower } from "./helpers";
 
 import { fillSelectedGuildData } from "../../redux/actions";
+
+import Progression from "./progression";
 
 // TEMP FOR DEV
 import data from "./data.json";
@@ -16,6 +18,7 @@ class GuildView extends React.PureComponent {
         const params = new URLSearchParams(this.props.location.search);
         const server = params.get("server").toLocaleLowerCase();
         const guildName = params.get("guildName");
+        const servers = serversToLower()
 
         fetch("https://ossified-hyacinth.glitch.me/getGuild", {
             method: "post",
@@ -34,7 +37,16 @@ class GuildView extends React.PureComponent {
 
     render() {
         if (this.props.guildData) {
-            return <div>{this.props.guildData.guildName}</div>;
+            return (
+                <main className="guild-view">
+                    <h2>{this.props.guildData.guildName}</h2>
+                    <div className="guild-view-container">
+                        <Progression
+                            progression={this.props.guildData.progression}
+                        />
+                    </div>
+                </main>
+            );
         }
         return <div>No data or loading</div>;
     }
