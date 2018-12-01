@@ -1,5 +1,8 @@
 $dark: #232323
 $light: #F9F9FA
+$light-2: #EEEEEE
+$red: #f44336
+$green: #4caf50
 $mobile-brakepoint: 360px
 
 @mixin default-shadow($red, $green, $blue)
@@ -8,6 +11,7 @@ $mobile-brakepoint: 360px
 @import "./components/allGuilds/index.sass"
 @import "./components/showGuilds/index.sass"
 @import "./components/searchGuild/index.sass"
+@import "./components/guildView/index.sass"
 
 body
     padding: 0px
@@ -20,4 +24,7 @@ body
 
 a
     text-decoration: none
-
+.red
+    color: $red
+.green
+    color: $green
