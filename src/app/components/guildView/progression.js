@@ -41,7 +41,12 @@ class Instance extends React.PureComponent {
     }
 
     render() {
-        let picture = mapInstanceToPicture(this.props.instance.instanceName);
+        let style = {
+            background:
+                "url(" +
+                mapInstanceToPicture(this.props.instance.instanceName) +
+                ")"
+        };
 
         let bosses = [];
 
@@ -60,7 +65,7 @@ class Instance extends React.PureComponent {
                     button
                     onClick={this.handleClick}
                     className="progression-instance"
-                    style={{ background: "url(" + picture + ")" }}
+                    style={style}
                 >
                     <ListItemText primary={this.props.instance.abbreviation} />
                     {this.state.open ? <ExpandLess /> : <ExpandMore />}
@@ -68,34 +73,28 @@ class Instance extends React.PureComponent {
 
                 <Collapse in={this.state.open} timeout="auto" unmountOnExit>
                     <List component="div" disablePadding>
-                        {bosses.map(boss => {
-                            return (
-                                <ListItem className="instance-boss-container">
-                                    <ListItemText
-                                        primary={boss.bossName}
-                                        secondary={
-                                            <p
-                                                className={
-                                                    "boss-defeated " +
-                                                    (boss.defeated
-                                                        ? "green"
-                                                        : "red")
-                                                }
-                                            >
-                                                {boss.defeated
-                                                    ? "Defeated"
-                                                    : "Alive"}
-                                            </p>
-                                        }
-                                    />
-                                </ListItem>
-                            );
-                        })}
+                        {bosses.map(boss => (
+                            <Boss boss={boss} key={boss.bossName} />
+                        ))}
                     </List>
                 </Collapse>
             </div>
         );
     }
+}
+
+function Boss(props) {
+    let secondaryText = props.boss.defeated ? "Defeated" : "Alive";
+    let className = "boss-defeated " + (props.boss.defeated ? "green" : "red");
+
+    return (
+        <ListItem className="instance-boss-container">
+            <ListItemText
+                primary={props.boss.bossName}
+                secondary={<span className={className}>{secondaryText}</span>}
+            />
+        </ListItem>
+    );
 }
 
 export default Progression;
