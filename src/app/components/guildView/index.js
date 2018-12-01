@@ -6,6 +6,7 @@ import { serversToLower } from "./helpers";
 import { fillSelectedGuildData } from "../../redux/actions";
 
 import Progression from "./progression";
+import ClassDistribution from "./classDistribution";
 
 // TEMP FOR DEV
 import data from "./data.json";
@@ -43,6 +44,9 @@ class GuildView extends React.PureComponent {
                     <div className="guild-view-container">
                         <Progression
                             progression={this.props.guildData.progression}
+                        />
+                        <ClassDistribution
+                            guildList={this.props.guildData.guildList}
                         />
                     </div>
                 </main>
