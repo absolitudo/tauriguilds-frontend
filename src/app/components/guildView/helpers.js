@@ -21,4 +21,20 @@ function getClassPictures() {
     return pictures;
 }
 
-export { serversToLower, mapInstanceToPicture, getClassPictures };
+function filterGuildMembers(guildMembers, filters) {
+    if (filters.direction === "asc") {
+        return guildMembers.sort(
+            (a, b) => a[filters.selectedFilter] - b[filters.selectedFilter]
+        );
+    }
+    return guildMembers.sort(
+        (a, b) => b[filters.selectedFilter] - a[filters.selectedFilter]
+    );
+}
+
+export {
+    serversToLower,
+    mapInstanceToPicture,
+    getClassPictures,
+    filterGuildMembers
+};

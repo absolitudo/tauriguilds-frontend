@@ -12,6 +12,7 @@ import Typography from "@material-ui/core/Typography";
 import Paper from "@material-ui/core/Paper";
 import Tooltip from "@material-ui/core/Tooltip";
 
+import { filterGuildMembers } from "./helpers";
 import { changeGuildMembersFilter } from "../../redux/actions";
 
 function TableTitle() {
@@ -95,6 +96,7 @@ class MemberTableColumns extends React.Component {
 class MembersTable extends React.Component {
     render() {
         let guildMembers = [];
+        const { filters } = this.props.guildMembersFilter;
         const { changeGuildMembersFilter, guildMembersFilter } = this.props;
 
         for (let member in this.props.guildMembers) {
@@ -111,12 +113,14 @@ class MembersTable extends React.Component {
                             data={guildMembersFilter}
                         />
                         <TableBody>
-                            {guildMembers.map(member => (
-                                <GuildMember
-                                    member={member}
-                                    key={member.name}
-                                />
-                            ))}
+                            {filterGuildMembers(guildMembers, filters).map(
+                                member => (
+                                    <GuildMember
+                                        member={member}
+                                        key={member.name}
+                                    />
+                                )
+                            )}
                         </TableBody>
                     </Table>
                 </div>
