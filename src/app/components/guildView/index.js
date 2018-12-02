@@ -7,6 +7,7 @@ import { fillSelectedGuildData } from "../../redux/actions";
 
 import Progression from "./progression";
 import ClassDistribution from "./classDistribution";
+import DisplayGuildMembers from "./displayGuildMembers";
 
 // TEMP FOR DEV
 import data from "./data.json";
@@ -42,12 +43,13 @@ class GuildView extends React.PureComponent {
                 <main className="guild-view">
                     <h2>{this.props.guildData.guildName}</h2>
                     <div className="guild-view-container">
-                        <Progression
-                            progression={this.props.guildData.progression}
-                        />
                         <ClassDistribution
                             guildList={this.props.guildData.guildList}
                         />
+                        <Progression
+                            progression={this.props.guildData.progression}
+                        />
+                        <DisplayGuildMembers />
                     </div>
                 </main>
             );
