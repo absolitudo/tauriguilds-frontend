@@ -12,6 +12,13 @@ export function changeGuildFilter(payload) {
     };
 }
 
+export function changeGuildMembersFilter(payload) {
+    return {
+        type: "CHANGE_GUILD_MEMBERS_FILTER",
+        payload
+    };
+}
+
 export function fillSelectedGuildData(payload) {
     return {
         type: "FILL_SELECTED_GUILD_DATA",
