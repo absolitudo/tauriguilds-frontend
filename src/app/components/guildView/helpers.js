@@ -32,9 +32,15 @@ function filterGuildMembers(guildMembers, filters) {
     );
 }
 
+function capitalizeString(string) {
+    let newString = string[0].toUpperCase() + string.slice(1, string.length);
+    return newString;
+}
+
 export {
     serversToLower,
     mapInstanceToPicture,
     getClassPictures,
-    filterGuildMembers
+    filterGuildMembers,
+    capitalizeString
 };

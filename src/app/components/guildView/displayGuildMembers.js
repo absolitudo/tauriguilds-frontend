@@ -12,7 +12,9 @@ import Typography from "@material-ui/core/Typography";
 import Paper from "@material-ui/core/Paper";
 import Tooltip from "@material-ui/core/Tooltip";
 
-import { filterGuildMembers } from "./helpers";
+import characterClasses from "../../../constants/characterClasses";
+import characterRaces from "../../../constants/characterRaces";
+import { filterGuildMembers, capitalizeString } from "./helpers";
 import { changeGuildMembersFilter } from "../../redux/actions";
 
 function TableTitle() {
@@ -28,9 +30,11 @@ function TableTitle() {
 function GuildMember({ member }) {
     return (
         <TableRow hover>
-            <TableCell component="th">{member.name}</TableCell>
-            <TableCell>{member.class}</TableCell>
-            <TableCell>{member.race}</TableCell>
+            <TableCell>{member.name}</TableCell>
+            <TableCell>
+                {capitalizeString(characterClasses[member.class])}
+            </TableCell>
+            <TableCell>{characterRaces[member.race]}</TableCell>
             <TableCell>{member.level}</TableCell>
             <TableCell>{member.rank_name}</TableCell>
         </TableRow>
@@ -83,7 +87,7 @@ class MemberTableColumns extends React.Component {
                                     </TableSortLabel>
                                 </Tooltip>
                             ) : (
-                                <TableCell>{column.label}</TableCell>
+                                column.label
                             )}
                         </TableCell>
                     ))}
@@ -104,27 +108,31 @@ class MembersTable extends React.Component {
         }
 
         return (
-            <Paper>
-                <TableTitle />
-                <div>
-                    <Table aria-labelledby="member-table-title">
-                        <MemberTableColumns
-                            changeGuildMembersFilter={changeGuildMembersFilter}
-                            data={guildMembersFilter}
-                        />
-                        <TableBody>
-                            {filterGuildMembers(guildMembers, filters).map(
-                                member => (
-                                    <GuildMember
-                                        member={member}
-                                        key={member.name}
-                                    />
-                                )
-                            )}
-                        </TableBody>
-                    </Table>
-                </div>
-            </Paper>
+            <section className="display-guild-members">
+                <Paper>
+                    <TableTitle />
+                    <div>
+                        <Table aria-labelledby="member-table-title">
+                            <MemberTableColumns
+                                changeGuildMembersFilter={
+                                    changeGuildMembersFilter
+                                }
+                                data={guildMembersFilter}
+                            />
+                            <TableBody>
+                                {filterGuildMembers(guildMembers, filters).map(
+                                    member => (
+                                        <GuildMember
+                                            member={member}
+                                            key={member.name}
+                                        />
+                                    )
+                                )}
+                            </TableBody>
+                        </Table>
+                    </div>
+                </Paper>
+            </section>
         );
     }
 }
