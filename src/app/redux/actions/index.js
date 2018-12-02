@@ -5,9 +5,9 @@ export function fillGuildsData(payload) {
     };
 }
 
-export function changeFilter(payload) {
+export function changeGuildFilter(payload) {
     return {
-        type: "CHANGE_FILTER",
+        type: "CHANGE_GUILD_FILTER",
         payload
     };
 }

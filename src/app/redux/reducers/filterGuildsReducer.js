@@ -7,7 +7,7 @@ const defaultState = {
 
 function filterGruildsReducer(state = defaultState, action) {
     switch (action.type) {
-        case "CHANGE_FILTER":
+        case "CHANGE_GUILD_FILTER":
             return {
                 ...state,
                 [action.payload.name]: action.payload.value

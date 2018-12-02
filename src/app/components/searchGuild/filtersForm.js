@@ -12,7 +12,7 @@ import factions from "../../../constants/factions";
 import { abbreviation as currentRaid } from "../../../constants/currentRaid";
 import { serversToArr, hcArr } from "./helpers";
 
-import { changeFilter } from "../../redux/actions";
+import { changeGuildFilter } from "../../redux/actions";
 
 class FiltersForm extends React.PureComponent {
     constructor(props) {
@@ -21,7 +21,7 @@ class FiltersForm extends React.PureComponent {
     }
 
     handleChange(e) {
-        this.props.changeFilter({
+        this.props.changeGuildFilter({
             name: e.target.name,
             value: e.target.value
         });
@@ -117,7 +117,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ changeFilter }, dispatch);
+    return bindActionCreators({ changeGuildFilter }, dispatch);
 }
 
 export default connect(
