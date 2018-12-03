@@ -1,13 +1,13 @@
 {
   "main.css": "/static/css/main.52998649.chunk.css",
-  "main.js": "/static/js/main.1a344a94.chunk.js",
-  "main.js.map": "/static/js/main.1a344a94.chunk.js.map",
+  "main.js": "/static/js/main.b959d463.chunk.js",
+  "main.js.map": "/static/js/main.b959d463.chunk.js.map",
   "static/css/1.05c0f402.chunk.css": "/static/css/1.05c0f402.chunk.css",
   "static/js/1.32e2aa66.chunk.js": "/static/js/1.32e2aa66.chunk.js",
   "static/js/1.32e2aa66.chunk.js.map": "/static/js/1.32e2aa66.chunk.js.map",
   "runtime~main.js": "/static/js/runtime~main.229c360f.js",
   "runtime~main.js.map": "/static/js/runtime~main.229c360f.js.map",
-  "static/media/index.css": "/static/media/roboto-latin-900.8c2ade50.woff",
+  "static/media/index.css": "/static/media/roboto-latin-900italic.bc833e72.woff",
   "static/media/10.png": "/static/media/10.e38a3a04.png",
   "static/media/UI-EJ-LOREBG-MogushanVaults.png": "/static/media/UI-EJ-LOREBG-MogushanVaults.d45ae489.png",
   "static/media/UI-EJ-LOREBG-TerraceoftheEndlessSpring.png": "/static/media/UI-EJ-LOREBG-TerraceoftheEndlessSpring.84f0a35b.png",
@@ -18,6 +18,6 @@
   "static/css/main.52998649.chunk.css.map": "/static/css/main.52998649.chunk.css.map",
   "static/css/1.05c0f402.chunk.css.map": "/static/css/1.05c0f402.chunk.css.map",
   "index.html": "/index.html",
-  "precache-manifest.a76a1a32913a8a7dd4ddde288874e57c.js": "/precache-manifest.a76a1a32913a8a7dd4ddde288874e57c.js",
+  "precache-manifest.3478d4881d96a45131ff611eba2af747.js": "/precache-manifest.3478d4881d96a45131ff611eba2af747.js",
   "service-worker.js": "/service-worker.js"
 }

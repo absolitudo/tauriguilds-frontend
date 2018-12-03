@@ -8,12 +8,14 @@ import NotFound from "../notFound";
 import Error from "../error";
 
 function Routes({ error }) {
-    if (error.errorString) {
-        return <Error msg={error.errorString} />;
-    }
     return (
         <Router>
             <Switch>
+                {error.errorString && (
+                    <Route
+                        component={() => <Error msg={error.errorString} />}
+                    />
+                )}
                 <Route exact path="/" component={AllGuilds} />
                 <Route exact path="/guild" component={GuildView} />
                 <Route component={NotFound} />
