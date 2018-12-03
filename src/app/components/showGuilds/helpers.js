@@ -1,10 +1,15 @@
 import factions from "../../../constants/factions";
 import servers from "../../../constants/servers";
-
+import { name as currentRaid } from "../../../constants/currentRaid";
 export function applyFilters(guilds, filters) {
     guilds = guilds.filter(guild => {
         // checks if current progression of guild is higher than stated
-        if (!(getCurrProgNum(guild.currentProgress) >= filters.hc)) {
+        if (
+            !(
+                getCurrProgNum(guild.progression[currentRaid].abbreviation) >=
+                filters.hc
+            )
+        ) {
             return false;
         }
 
@@ -35,8 +40,10 @@ function sort(guilds, filters) {
         case "Progression":
             return guilds.sort((guild1, guild2) => {
                 return (
-                    getCurrProgNum(guild2.currentProgress) -
-                    getCurrProgNum(guild1.currentProgress)
+                    getCurrProgNum(
+                        guild2.progression[currentRaid].abbreviation
+                    ) -
+                    getCurrProgNum(guild1.progression[currentRaid].abbreviation)
                 );
             });
 
@@ -49,8 +56,8 @@ function sort(guilds, filters) {
     }
 }
 
-function getCurrProgNum(currentProgress) {
-    return Number(/^\d+/.exec(currentProgress));
+function getCurrProgNum(abbreviation) {
+    return Number(/\d+/g.exec(abbreviation));
 }
 
 export function convertServerName(serverName) {
