@@ -2,7 +2,7 @@ const defaultState = {
     server: "All",
     faction: "All",
     hc: "0",
-    sort: "Date added"
+    sort: "Progression"
 };
 
 function filterGruildsReducer(state = defaultState, action) {
