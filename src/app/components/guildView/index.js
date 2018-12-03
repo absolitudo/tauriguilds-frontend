@@ -2,8 +2,9 @@ import React from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { serversToLower } from "./helpers";
+import LinearProgress from "@material-ui/core/LinearProgress";
 
-import { fillSelectedGuildData } from "../../redux/actions";
+import { fillSelectedGuildData, guildViewLoading } from "../../redux/actions";
 
 import Progression from "./progression";
 import ClassDistribution from "./classDistribution";
@@ -19,6 +20,9 @@ class GuildView extends React.PureComponent {
         this.props.fillSelectedGuildData(data);
 
         /*
+        if (!this.props.guildData.loading) {
+            this.props.guildViewLoading(true)
+        }
         const params = new URLSearchParams(this.props.location.search);
         const server = params.get("server").toLocaleLowerCase();
         const guildName = params.get("guildName");
@@ -41,7 +45,7 @@ class GuildView extends React.PureComponent {
 
     render() {
         const { guildData } = this.props;
-        if (guildData) {
+        if (!guildData.loading) {
             return (
                 <main className="guild-view">
                     <div className="guild-name-container">
@@ -57,16 +61,27 @@ class GuildView extends React.PureComponent {
                 </main>
             );
         }
-        return <div>No data or loading</div>;
+        return (
+            <div className="loader guild-view-loader">
+                Loading
+                <LinearProgress color="secondary" />
+            </div>
+        );
     }
 }
 
 function mapStateToProps(state) {
-    return { guildData: state.guildData.selectedGuild };
+    return {
+        guildData: state.guildData.selectedGuild,
+        loading: state.guildData.selectedGuild.loading
+    };
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ fillSelectedGuildData }, dispatch);
+    return bindActionCreators(
+        { fillSelectedGuildData, guildViewLoading },
+        dispatch
+    );
 }
 
 export default connect(

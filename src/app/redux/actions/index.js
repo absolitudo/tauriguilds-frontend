@@ -32,3 +32,10 @@ export function fillSelectedGuildData(payload) {
         payload
     };
 }
+
+export function guildViewLoading(payload) {
+    return {
+        type: "SET_GUILD_VIEW_LOAD",
+        payload
+    };
+}
