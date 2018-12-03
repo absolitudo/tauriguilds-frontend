@@ -11,16 +11,20 @@ import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import Paper from "@material-ui/core/Paper";
 import Tooltip from "@material-ui/core/Tooltip";
+import TablePagination from "@material-ui/core/TablePagination";
 
 import characterClasses from "../../../constants/characterClasses";
 import characterRaces from "../../../constants/characterRaces";
 import { filterGuildMembers, capitalizeString } from "./helpers";
-import { changeGuildMembersFilter } from "../../redux/actions";
+import {
+    changeGuildMembersFilter,
+    changeGuildMembersPagination
+} from "../../redux/actions";
 
 function TableTitle() {
     return (
         <Toolbar>
-            <Typography variant="h6" id="member-table-title">
+            <Typography variant="h6" className="member-table-title">
                 Guild members
             </Typography>
         </Toolbar>
@@ -100,7 +104,7 @@ class MemberTableColumns extends React.Component {
 class MembersTable extends React.Component {
     render() {
         let guildMembers = [];
-        const { filters } = this.props.guildMembersFilter;
+        const { filters, pagination } = this.props.guildMembersFilter;
         const { changeGuildMembersFilter, guildMembersFilter } = this.props;
 
         for (let member in this.props.guildMembers) {
@@ -111,7 +115,7 @@ class MembersTable extends React.Component {
             <section className="display-guild-members">
                 <Paper>
                     <TableTitle />
-                    <div>
+                    <div className="display-guild-members-table">
                         <Table aria-labelledby="member-table-title">
                             <MemberTableColumns
                                 changeGuildMembersFilter={
@@ -120,17 +124,48 @@ class MembersTable extends React.Component {
                                 data={guildMembersFilter}
                             />
                             <TableBody>
-                                {filterGuildMembers(guildMembers, filters).map(
-                                    member => (
+                                {filterGuildMembers(guildMembers, filters)
+                                    .slice(
+                                        pagination.currentPage *
+                                            pagination.rowsPerPage,
+                                        pagination.currentPage *
+                                            pagination.rowsPerPage +
+                                            pagination.rowsPerPage
+                                    )
+                                    .map(member => (
                                         <GuildMember
                                             member={member}
                                             key={member.name}
                                         />
-                                    )
-                                )}
+                                    ))}
                             </TableBody>
                         </Table>
                     </div>
+                    <TablePagination
+                        className="display-guild-members-pagination"
+                        rowsPerPageOptions={pagination.rowsPerPageOptions}
+                        component="div"
+                        count={guildMembers.length}
+                        rowsPerPage={pagination.rowsPerPage}
+                        page={pagination.currentPage}
+                        backIconButtonProps={{
+                            "aria-label": "Previous Page"
+                        }}
+                        nextIconButtonProps={{
+                            "aria-label": "Next Page"
+                        }}
+                        onChangePage={(e, page) =>
+                            this.props.changeGuildMembersPagination({
+                                currentPage: page
+                            })
+                        }
+                        onChangeRowsPerPage={(e, element) =>
+                            this.props.changeGuildMembersPagination({
+                                rowsPerPage: Number(element.key),
+                                currentPage: 0
+                            })
+                        }
+                    />
                 </Paper>
             </section>
         );
@@ -145,7 +180,10 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ changeGuildMembersFilter }, dispatch);
+    return bindActionCreators(
+        { changeGuildMembersFilter, changeGuildMembersPagination },
+        dispatch
+    );
 }
 
 export default connect(

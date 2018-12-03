@@ -2,6 +2,8 @@
 .guild-view
     .progression
         width: 260px
+        margin: 10px 0px
+        margin-right: 20px
 
         .progression-instance
             background-position: center !important
@@ -47,10 +49,31 @@
                     color: $light
                     font-size: 12px
                     font-weight: bold
+    .display-guild-members
+        margin: 10px 0px
+        max-width: 100%
+        &-table
+            overflow: hidden
+            overflow-x: scroll
+        &-pagination
+            font-size: 0.75rem
+            margin-top: 5px
+            padding: 10px
+        &-pagination div
+            height: auto
+            flex-wrap: wrap
+            justify-content: flex-end
+    .guild-view-container
+        padding: 20px
+        display: flex
+        flex-wrap: wrap
+        justify-content: center
 
-
-                
 @media(max-width: 550px)
+    .display-guild-members-pagination div
+        justify-content: center !important
     .class-dist-container
         overflow: hidden
         overflow-x: scroll
+    .progression
+        margin-right: 0px !important

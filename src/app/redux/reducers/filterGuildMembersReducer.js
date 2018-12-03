@@ -29,6 +29,11 @@ const defaultState = {
     filters: {
         selectedFilter: "level",
         direction: "desc"
+    },
+    pagination: {
+        rowsPerPageOptions: [5, 10, 30],
+        rowsPerPage: 10,
+        currentPage: 0
     }
 };
 
@@ -36,6 +41,11 @@ function filterGuildMembersReducer(state = defaultState, action) {
     switch (action.type) {
         case "CHANGE_GUILD_MEMBERS_FILTER":
             return { ...state, filters: action.payload };
+        case "CHANGE_GUILD_MEMBERS_PAGINATION":
+            return {
+                ...state,
+                pagination: { ...state.pagination, ...action.payload }
+            };
         default:
             return state;
     }

@@ -42,10 +42,10 @@ class GuildView extends React.PureComponent {
             return (
                 <main className="guild-view">
                     <h2>{this.props.guildData.guildName}</h2>
+                    <ClassDistribution
+                        guildList={this.props.guildData.guildList}
+                    />
                     <div className="guild-view-container">
-                        <ClassDistribution
-                            guildList={this.props.guildData.guildList}
-                        />
                         <Progression
                             progression={this.props.guildData.progression}
                         />
