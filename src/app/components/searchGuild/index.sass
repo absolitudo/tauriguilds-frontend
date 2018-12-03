@@ -1,16 +1,14 @@
 .search-guild
-    @include default-shadow(0, 0, 0)
     padding: 100px 20px 20px
-    background-color: #111
-    background-image: url("../assets/dark-exa.png");
+    
     .guild-search
         position: relative
         margin: auto
         width: 100%
         max-width: 610px
         position: relative
+
         .input-search
-            @include default-shadow(0, 0, 0)
             width: 100%
             max-width: calc(100% - 10px)
             height: 55px
@@ -28,6 +26,7 @@
             background: none
             border: none
             cursor: pointer
+
         .search-select-server
             position: absolute
             top: 12px
@@ -42,8 +41,6 @@
             .select
                 width: 70px
 
-            
-
     .guild-filters
         margin: auto
         margin-top: 10px
@@ -55,11 +52,6 @@
         .filter
             width: 115px
             margin: 5px
-
-            .select
-                background-color: white
-            .select-label
-                color: white
 
 @media(max-width: $mobile-brakepoint)
     .guild-filters
