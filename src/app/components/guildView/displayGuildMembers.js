@@ -130,7 +130,7 @@ class MembersTable extends React.Component {
             <section className="display-guild-members">
                 <Paper>
                     <TableTitle />
-                    <div className="display-guild-members-table">
+                    <div className="display-guild-members-table table-container">
                         <Table aria-labelledby="member-table-title">
                             <MemberTableColumns
                                 changeGuildMembersFilter={
