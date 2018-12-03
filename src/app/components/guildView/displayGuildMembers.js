@@ -15,6 +15,8 @@ import TablePagination from "@material-ui/core/TablePagination";
 
 import characterClasses from "../../../constants/characterClasses";
 import characterRaces from "../../../constants/characterRaces";
+import characterClassColors from "../../../constants/characterClassColors";
+import tauriUrl from "../../../constants/tauriUrl";
 import { filterGuildMembers, capitalizeString } from "./helpers";
 import {
     changeGuildMembersFilter,
@@ -34,7 +36,20 @@ function TableTitle() {
 function GuildMember({ member }) {
     return (
         <TableRow hover>
-            <TableCell>{member.name}</TableCell>
+            <TableCell className="name-cell">
+                <a
+                    href={`${tauriUrl.base}/${tauriUrl.armory}${
+                        tauriUrl.character
+                    }?r=${member.realm}&n=${member.name}`}
+                    rel="noopener noreferrer"
+                    style={{
+                        color: characterClassColors[member.class]
+                    }}
+                    target="_blank"
+                >
+                    {member.name}
+                </a>
+            </TableCell>
             <TableCell>
                 {capitalizeString(characterClasses[member.class])}
             </TableCell>

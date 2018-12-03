@@ -27,8 +27,8 @@ const defaultState = {
         }
     ],
     filters: {
-        selectedFilter: "level",
-        direction: "desc"
+        selectedFilter: "rank",
+        direction: "asc"
     },
     pagination: {
         rowsPerPageOptions: [5, 10, 30],
