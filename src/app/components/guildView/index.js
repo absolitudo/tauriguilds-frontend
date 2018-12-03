@@ -16,13 +16,8 @@ import DisplayGuildMembers from "./displayGuildMembers";
 
 import factions from "../../../constants/factions";
 
-// TEMP FOR DEV
-import data from "./data.json";
-
 class GuildView extends React.PureComponent {
     componentDidMount() {
-        this.props.fillSelectedGuildData(data);
-        /*
         if (!this.props.guildData.loading) {
             this.props.guildViewLoading(true);
         }
@@ -49,7 +44,6 @@ class GuildView extends React.PureComponent {
                 this.props.fillSelectedGuildData(res);
             })
             .catch(err => this.props.setError(err));
-            */
     }
 
     render() {
