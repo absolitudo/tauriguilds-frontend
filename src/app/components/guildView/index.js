@@ -9,6 +9,8 @@ import Progression from "./progression";
 import ClassDistribution from "./classDistribution";
 import DisplayGuildMembers from "./displayGuildMembers";
 
+import factions from "../../../constants/factions";
+
 // TEMP FOR DEV
 import data from "./data.json";
 
@@ -38,17 +40,18 @@ class GuildView extends React.PureComponent {
     }
 
     render() {
-        if (this.props.guildData) {
+        const { guildData } = this.props;
+        if (guildData) {
             return (
                 <main className="guild-view">
-                    <h2>{this.props.guildData.guildName}</h2>
-                    <ClassDistribution
-                        guildList={this.props.guildData.guildList}
-                    />
+                    <div className="guild-name-container">
+                        <h1>{guildData.guildName}</h1>
+                        <p>{guildData.realm}</p>
+                        <p>{factions[guildData.gFaction + 1]}</p>
+                    </div>
+                    <ClassDistribution guildList={guildData.guildList} />
                     <div className="guild-view-container">
-                        <Progression
-                            progression={this.props.guildData.progression}
-                        />
+                        <Progression progression={guildData.progression} />
                         <DisplayGuildMembers />
                     </div>
                 </main>
