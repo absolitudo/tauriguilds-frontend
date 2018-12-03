@@ -39,3 +39,10 @@ export function guildViewLoading(payload) {
         payload
     };
 }
+
+export function setError(payload) {
+    return {
+        type: "SET_ERROR",
+        payload
+    };
+}

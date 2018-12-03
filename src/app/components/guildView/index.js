@@ -4,7 +4,11 @@ import { bindActionCreators } from "redux";
 import { serversToLower } from "./helpers";
 import LinearProgress from "@material-ui/core/LinearProgress";
 
-import { fillSelectedGuildData, guildViewLoading } from "../../redux/actions";
+import {
+    fillSelectedGuildData,
+    guildViewLoading,
+    setError
+} from "../../redux/actions";
 
 import Progression from "./progression";
 import ClassDistribution from "./classDistribution";
@@ -18,15 +22,14 @@ import data from "./data.json";
 class GuildView extends React.PureComponent {
     componentDidMount() {
         this.props.fillSelectedGuildData(data);
-
         /*
         if (!this.props.guildData.loading) {
-            this.props.guildViewLoading(true)
+            this.props.guildViewLoading(true);
         }
         const params = new URLSearchParams(this.props.location.search);
         const server = params.get("server").toLocaleLowerCase();
         const guildName = params.get("guildName");
-        const servers = serversToLower()
+        const servers = serversToLower();
 
         fetch("https://ossified-hyacinth.glitch.me/getGuild", {
             method: "post",
@@ -39,7 +42,13 @@ class GuildView extends React.PureComponent {
             })
         })
             .then(res => res.json())
-            .then(res => this.props.fillSelectedGuildData(res));
+            .then(res => {
+                if (res.err) {
+                    throw res.err;
+                }
+                this.props.fillSelectedGuildData(res);
+            })
+            .catch(err => this.props.setError(err));
             */
     }
 
@@ -79,7 +88,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
     return bindActionCreators(
-        { fillSelectedGuildData, guildViewLoading },
+        { fillSelectedGuildData, guildViewLoading, setError },
         dispatch
     );
 }

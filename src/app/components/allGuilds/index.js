@@ -7,7 +7,7 @@ import data from "./data.json";
 import ShowGuilds from "../showGuilds";
 import SearchGuild from "../searchGuild";
 
-import { fillGuildsData } from "../../redux/actions";
+import { fillGuildsData, setError } from "../../redux/actions";
 import { bindActionCreators } from "redux";
 
 class AllGuilds extends React.PureComponent {
@@ -16,7 +16,13 @@ class AllGuilds extends React.PureComponent {
         /*
         fetch("https://ossified-hyacinth.glitch.me/getGuilds")
             .then(res => res.json())
-            .then(res => this.props.fillGuildsData(res));
+            .then(res => {
+                if (res.err) {
+                    throw res.err;
+                }
+                this.props.fillGuildsData(res);
+            })
+            .catch(err => this.props.setError(err));
             */
     }
 
@@ -31,7 +37,7 @@ class AllGuilds extends React.PureComponent {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ fillGuildsData }, dispatch);
+    return bindActionCreators({ fillGuildsData, setError }, dispatch);
 }
 
 export default connect(
