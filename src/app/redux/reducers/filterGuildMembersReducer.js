@@ -40,7 +40,11 @@ const defaultState = {
 function filterGuildMembersReducer(state = defaultState, action) {
     switch (action.type) {
         case "CHANGE_GUILD_MEMBERS_FILTER":
-            return { ...state, filters: action.payload };
+            return {
+                ...state,
+                filters: action.payload,
+                pagination: { ...state.pagination, currentPage: 0 }
+            };
         case "CHANGE_GUILD_MEMBERS_PAGINATION":
             return {
                 ...state,
