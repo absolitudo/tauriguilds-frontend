@@ -16,24 +16,17 @@ import DisplayGuildMembers from "./displayGuildMembers";
 
 import factions from "../../../constants/factions";
 
-/* TEMP FOR DEV */
-import data from "./data";
-
 class GuildView extends React.PureComponent {
     componentDidMount() {
         if (!this.props.guildData.loading) {
             this.props.guildViewLoading(true);
         }
-        this.props.fillSelectedGuildData(data);
-
-        /*
 
         const params = new URLSearchParams(this.props.location.search);
         const server = params.get("server").toLocaleLowerCase();
         const guildName = params.get("guildName");
         const servers = serversToLower();
 
-        
         fetch("https://ossified-hyacinth.glitch.me/getGuild", {
             method: "post",
             headers: {
@@ -52,7 +45,6 @@ class GuildView extends React.PureComponent {
                 this.props.fillSelectedGuildData(res);
             })
             .catch(err => this.props.setError(err));
-            */
     }
 
     render() {
