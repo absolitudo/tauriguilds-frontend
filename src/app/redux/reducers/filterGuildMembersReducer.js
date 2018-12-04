@@ -25,6 +25,10 @@ const defaultState = {
         by: "rank",
         direction: "asc"
     },
+    filter: {
+        by: "name",
+        name: ""
+    },
     pagination: {
         rowsPerPageOptions: [5, 10, 30],
         rowsPerPage: 10,
@@ -38,6 +42,12 @@ function filterGuildMembersReducer(state = defaultState, action) {
             return {
                 ...state,
                 sort: action.payload,
+                pagination: { ...state.pagination, currentPage: 0 }
+            };
+        case "CHANGE_GUILD_MEMBERS_FILTER":
+            return {
+                ...state,
+                filter: { ...action.payload },
                 pagination: { ...state.pagination, currentPage: 0 }
             };
         case "CHANGE_GUILD_MEMBERS_PAGINATION":

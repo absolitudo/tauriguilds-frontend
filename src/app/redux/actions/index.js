@@ -46,3 +46,10 @@ export function setError(payload) {
         payload
     };
 }
+
+export function changeGuildMembersFilter(payload) {
+    return {
+        type: "CHANGE_GUILD_MEMBERS_FILTER",
+        payload
+    };
+}

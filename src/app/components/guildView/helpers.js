@@ -21,6 +21,17 @@ function getClassPictures() {
     return pictures;
 }
 
+function filterGuildMembers(guildMembers, filter) {
+    const nameRegex = new RegExp(filter[filter.by], "gi");
+    return guildMembers.filter(member => {
+        if (nameRegex.exec(member[filter.by])) {
+            return true;
+        }
+
+        return false;
+    });
+}
+
 function sortGuildMembers(guildMembers, sort) {
     if (sort.direction === "asc") {
         return guildMembers.sort((a, b) => (a[sort.by] < b[sort.by] ? -1 : 1));
@@ -37,6 +48,7 @@ export {
     serversToLower,
     mapInstanceToPicture,
     getClassPictures,
+    filterGuildMembers,
     sortGuildMembers,
     capitalizeString
 };

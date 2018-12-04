@@ -18,13 +18,18 @@ import characterClasses from "../../../constants/characterClasses";
 import characterRaces from "../../../constants/characterRaces";
 import characterClassColors from "../../../constants/characterClassColors";
 import tauriUrl from "../../../constants/tauriUrl";
-import { sortGuildMembers, capitalizeString } from "./helpers";
+import {
+    filterGuildMembers,
+    sortGuildMembers,
+    capitalizeString
+} from "./helpers";
 import {
     changeGuildMembersSort,
+    changeGuildMembersFilter,
     changeGuildMembersPagination
 } from "../../redux/actions";
 
-function TableTitle() {
+function TableTitle({ changeGuildMembersFilter }) {
     return (
         <Toolbar className="display-guild-members-toolbar">
             <Typography variant="h6" className="member-table-title">
@@ -34,7 +39,12 @@ function TableTitle() {
                 label="Search member"
                 margin="dense"
                 className="member-table-name-input"
-                onChange={event => console.log(event.target.value)}
+                onChange={event =>
+                    changeGuildMembersFilter({
+                        by: "name",
+                        name: event.target.value
+                    })
+                }
             />
         </Toolbar>
     );
@@ -123,8 +133,12 @@ class MemberTableColumns extends React.Component {
 class MembersTable extends React.Component {
     render() {
         let guildMembers = [];
-        const { sort, pagination } = this.props.guildMembersFilter;
-        const { changeGuildMembersSort, guildMembersFilter } = this.props;
+        const { filter, sort, pagination } = this.props.guildMembersFilter;
+        const {
+            changeGuildMembersSort,
+            guildMembersFilter,
+            changeGuildMembersFilter
+        } = this.props;
 
         for (let member in this.props.guildMembers) {
             guildMembers.push(this.props.guildMembers[member]);
@@ -133,7 +147,9 @@ class MembersTable extends React.Component {
         return (
             <section className="display-guild-members">
                 <Paper>
-                    <TableTitle />
+                    <TableTitle
+                        changeGuildMembersFilter={changeGuildMembersFilter}
+                    />
                     <div className="display-guild-members-table table-container">
                         <Table aria-labelledby="member-table-title">
                             <MemberTableColumns
@@ -141,7 +157,10 @@ class MembersTable extends React.Component {
                                 data={guildMembersFilter}
                             />
                             <TableBody>
-                                {sortGuildMembers(guildMembers, sort)
+                                {sortGuildMembers(
+                                    filterGuildMembers(guildMembers, filter),
+                                    sort
+                                )
                                     .slice(
                                         pagination.currentPage *
                                             pagination.rowsPerPage,
@@ -198,7 +217,11 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
     return bindActionCreators(
-        { changeGuildMembersSort, changeGuildMembersPagination },
+        {
+            changeGuildMembersSort,
+            changeGuildMembersPagination,
+            changeGuildMembersFilter
+        },
         dispatch
     );
 }
