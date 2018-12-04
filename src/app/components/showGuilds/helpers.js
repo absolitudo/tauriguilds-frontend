@@ -1,6 +1,8 @@
 import factions from "../../../constants/factions";
 import servers from "../../../constants/servers";
+import { lastBoss } from "../../../constants/raidInfo";
 import { name as currentRaid } from "../../../constants/currentRaid";
+
 export function applyFilters(guilds, filters) {
     guilds = guilds.filter(guild => {
         // checks if current progression of guild is higher than stated
@@ -38,18 +40,26 @@ export function applyFilters(guilds, filters) {
 function sort(guilds, filters) {
     switch (filters.sort) {
         case "Progression":
-            return guilds.sort((guild1, guild2) => {
-                return (
-                    getCurrProgNum(
-                        guild2.progression[currentRaid].abbreviation
-                    ) -
-                    getCurrProgNum(guild1.progression[currentRaid].abbreviation)
+            return guilds.sort((a, b) => {
+                let bBossDefeated = getCurrProgNum(
+                    b.progression[currentRaid].abbreviation
                 );
+                let aBossDefeated = getCurrProgNum(
+                    a.progression[currentRaid].abbreviation
+                );
+                if (bBossDefeated === 13 && aBossDefeated === 13) {
+                    return b.progression[currentRaid][lastBoss] <
+                        a.progression[currentRaid][lastBoss]
+                        ? 1
+                        : -1;
+                }
+
+                return bBossDefeated - aBossDefeated;
             });
 
         case "Members":
-            return guilds.sort((guild1, guild2) => {
-                return guild2.guildMembersCount - guild1.guildMembersCount;
+            return guilds.sort((a, b) => {
+                return b.guildMembersCount - a.guildMembersCount;
             });
         default:
             return guilds;
