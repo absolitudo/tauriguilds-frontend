@@ -22,11 +22,21 @@ function ShowGuilds({ guilds, filters }) {
                     <Table className="table">
                         <TableHead>
                             <TableRow>
-                                <TableCell>Guild name</TableCell>
-                                <TableCell>Progression</TableCell>
-                                <TableCell>Server</TableCell>
-                                <TableCell>Faction</TableCell>
-                                <TableCell>Members</TableCell>
+                                <TableCell>
+                                    <span>Guild name </span>(clickable)
+                                </TableCell>
+                                <TableCell>
+                                    <span>Progression</span>
+                                </TableCell>
+                                <TableCell>
+                                    <span>Server</span>
+                                </TableCell>
+                                <TableCell>
+                                    <span>Faction</span>
+                                </TableCell>
+                                <TableCell>
+                                    <span>Members</span>
+                                </TableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>
