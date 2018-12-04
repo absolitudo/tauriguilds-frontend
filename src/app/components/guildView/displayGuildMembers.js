@@ -90,25 +90,21 @@ class MemberTableColumns extends React.Component {
                 <TableRow>
                     {tableColumns.map(column => (
                         <TableCell key={column.id}>
-                            {column.selectable ? (
-                                <Tooltip
-                                    title="Sort"
-                                    placement={"bottom-end"}
-                                    enterDelay={300}
+                            <Tooltip
+                                title="Sort"
+                                placement={"bottom-end"}
+                                enterDelay={300}
+                            >
+                                <TableSortLabel
+                                    active={column.id === selectedFilter}
+                                    direction={direction}
+                                    onClick={() =>
+                                        this.handleSortChange(column.id)
+                                    }
                                 >
-                                    <TableSortLabel
-                                        active={column.id === selectedFilter}
-                                        direction={direction}
-                                        onClick={() =>
-                                            this.handleSortChange(column.id)
-                                        }
-                                    >
-                                        {column.label}
-                                    </TableSortLabel>
-                                </Tooltip>
-                            ) : (
-                                column.label
-                            )}
+                                    {column.label}
+                                </TableSortLabel>
+                            </Tooltip>
                         </TableCell>
                     ))}
                 </TableRow>

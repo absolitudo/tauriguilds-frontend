@@ -2,28 +2,23 @@ const defaultState = {
     tableColumns: [
         {
             id: "name",
-            label: "Name",
-            selectable: false
+            label: "Name"
         },
         {
             id: "class",
-            label: "Class",
-            selectable: true
+            label: "Class"
         },
         {
             id: "race",
-            label: "Race",
-            selectable: true
+            label: "Race"
         },
         {
             id: "level",
-            label: "Level",
-            selectable: true
+            label: "Level"
         },
         {
             id: "rank",
-            label: "Rank",
-            selectable: true
+            label: "Rank"
         }
     ],
     filters: {

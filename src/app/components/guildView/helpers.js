@@ -23,12 +23,12 @@ function getClassPictures() {
 
 function filterGuildMembers(guildMembers, filters) {
     if (filters.direction === "asc") {
-        return guildMembers.sort(
-            (a, b) => a[filters.selectedFilter] - b[filters.selectedFilter]
+        return guildMembers.sort((a, b) =>
+            a[filters.selectedFilter] < b[filters.selectedFilter] ? -1 : 1
         );
     }
-    return guildMembers.sort(
-        (a, b) => b[filters.selectedFilter] - a[filters.selectedFilter]
+    return guildMembers.sort((a, b) =>
+        a[filters.selectedFilter] > b[filters.selectedFilter] ? -1 : 1
     );
 }
 
