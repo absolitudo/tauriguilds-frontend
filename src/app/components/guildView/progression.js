@@ -84,7 +84,15 @@ class Instance extends React.PureComponent {
 }
 
 function Boss(props) {
-    let secondaryText = props.boss.defeated ? "Defeated" : "Alive";
+    let secondaryText;
+    if (props.boss.defeated) {
+        secondaryText = new Date(
+            props.boss.defeated * 1000
+        ).toLocaleDateString();
+    } else {
+        secondaryText = "Alive";
+    }
+
     let className = "boss-defeated " + (props.boss.defeated ? "green" : "red");
 
     return (
