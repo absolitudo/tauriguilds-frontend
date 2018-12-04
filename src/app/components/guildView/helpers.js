@@ -21,15 +21,11 @@ function getClassPictures() {
     return pictures;
 }
 
-function filterGuildMembers(guildMembers, filters) {
-    if (filters.direction === "asc") {
-        return guildMembers.sort((a, b) =>
-            a[filters.selectedFilter] < b[filters.selectedFilter] ? -1 : 1
-        );
+function sortGuildMembers(guildMembers, sort) {
+    if (sort.direction === "asc") {
+        return guildMembers.sort((a, b) => (a[sort.by] < b[sort.by] ? -1 : 1));
     }
-    return guildMembers.sort((a, b) =>
-        a[filters.selectedFilter] > b[filters.selectedFilter] ? -1 : 1
-    );
+    return guildMembers.sort((a, b) => (a[sort.by] > b[sort.by] ? -1 : 1));
 }
 
 function capitalizeString(string) {
@@ -41,6 +37,6 @@ export {
     serversToLower,
     mapInstanceToPicture,
     getClassPictures,
-    filterGuildMembers,
+    sortGuildMembers,
     capitalizeString
 };

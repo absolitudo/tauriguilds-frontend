@@ -12,9 +12,9 @@ export function changeGuildFilter(payload) {
     };
 }
 
-export function changeGuildMembersFilter(payload) {
+export function changeGuildMembersSort(payload) {
     return {
-        type: "CHANGE_GUILD_MEMBERS_FILTER",
+        type: "CHANGE_GUILD_MEMBERS_SORT",
         payload
     };
 }

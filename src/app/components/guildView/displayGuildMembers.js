@@ -18,9 +18,9 @@ import characterClasses from "../../../constants/characterClasses";
 import characterRaces from "../../../constants/characterRaces";
 import characterClassColors from "../../../constants/characterClassColors";
 import tauriUrl from "../../../constants/tauriUrl";
-import { filterGuildMembers, capitalizeString } from "./helpers";
+import { sortGuildMembers, capitalizeString } from "./helpers";
 import {
-    changeGuildMembersFilter,
+    changeGuildMembersSort,
     changeGuildMembersPagination
 } from "../../redux/actions";
 
@@ -75,12 +75,12 @@ class MemberTableColumns extends React.Component {
     }
 
     handleSortChange(id) {
-        this.props.changeGuildMembersFilter({
-            selectedFilter: id,
+        this.props.changeGuildMembersSort({
+            by: id,
             direction:
-                id !== this.props.data.filters.selectedFilter
+                id !== this.props.data.sort.by
                     ? "desc"
-                    : this.props.data.filters.direction === "asc"
+                    : this.props.data.sort.direction === "asc"
                     ? "desc"
                     : "asc"
         });
@@ -89,7 +89,7 @@ class MemberTableColumns extends React.Component {
     render() {
         const {
             tableColumns,
-            filters: { selectedFilter, direction }
+            sort: { by, direction }
         } = this.props.data;
 
         return (
@@ -103,7 +103,7 @@ class MemberTableColumns extends React.Component {
                                 enterDelay={300}
                             >
                                 <TableSortLabel
-                                    active={column.id === selectedFilter}
+                                    active={column.id === by}
                                     direction={direction}
                                     onClick={() =>
                                         this.handleSortChange(column.id)
@@ -123,8 +123,8 @@ class MemberTableColumns extends React.Component {
 class MembersTable extends React.Component {
     render() {
         let guildMembers = [];
-        const { filters, pagination } = this.props.guildMembersFilter;
-        const { changeGuildMembersFilter, guildMembersFilter } = this.props;
+        const { sort, pagination } = this.props.guildMembersFilter;
+        const { changeGuildMembersSort, guildMembersFilter } = this.props;
 
         for (let member in this.props.guildMembers) {
             guildMembers.push(this.props.guildMembers[member]);
@@ -137,13 +137,11 @@ class MembersTable extends React.Component {
                     <div className="display-guild-members-table table-container">
                         <Table aria-labelledby="member-table-title">
                             <MemberTableColumns
-                                changeGuildMembersFilter={
-                                    changeGuildMembersFilter
-                                }
+                                changeGuildMembersSort={changeGuildMembersSort}
                                 data={guildMembersFilter}
                             />
                             <TableBody>
-                                {filterGuildMembers(guildMembers, filters)
+                                {sortGuildMembers(guildMembers, sort)
                                     .slice(
                                         pagination.currentPage *
                                             pagination.rowsPerPage,
@@ -200,7 +198,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
     return bindActionCreators(
-        { changeGuildMembersFilter, changeGuildMembersPagination },
+        { changeGuildMembersSort, changeGuildMembersPagination },
         dispatch
     );
 }

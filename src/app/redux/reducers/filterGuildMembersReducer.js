@@ -21,8 +21,8 @@ const defaultState = {
             label: "Rank"
         }
     ],
-    filters: {
-        selectedFilter: "rank",
+    sort: {
+        by: "rank",
         direction: "asc"
     },
     pagination: {
@@ -34,10 +34,10 @@ const defaultState = {
 
 function filterGuildMembersReducer(state = defaultState, action) {
     switch (action.type) {
-        case "CHANGE_GUILD_MEMBERS_FILTER":
+        case "CHANGE_GUILD_MEMBERS_SORT":
             return {
                 ...state,
-                filters: action.payload,
+                sort: action.payload,
                 pagination: { ...state.pagination, currentPage: 0 }
             };
         case "CHANGE_GUILD_MEMBERS_PAGINATION":
