@@ -12,6 +12,7 @@ import Typography from "@material-ui/core/Typography";
 import Paper from "@material-ui/core/Paper";
 import Tooltip from "@material-ui/core/Tooltip";
 import TablePagination from "@material-ui/core/TablePagination";
+import TextField from "@material-ui/core/TextField";
 
 import characterClasses from "../../../constants/characterClasses";
 import characterRaces from "../../../constants/characterRaces";
@@ -25,10 +26,16 @@ import {
 
 function TableTitle() {
     return (
-        <Toolbar>
+        <Toolbar className="display-guild-members-toolbar">
             <Typography variant="h6" className="member-table-title">
                 Guild members
             </Typography>
+            <TextField
+                label="Search member"
+                margin="dense"
+                className="member-table-name-input"
+                onChange={event => console.log(event.target.value)}
+            />
         </Toolbar>
     );
 }
