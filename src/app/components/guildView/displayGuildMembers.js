@@ -45,6 +45,7 @@ function GuildMember({ member }) {
                     style={{
                         color: characterClassColors[member.class]
                     }}
+                    className={member.class === 5 ? "outline" : ""}
                     target="_blank"
                 >
                     {member.name}

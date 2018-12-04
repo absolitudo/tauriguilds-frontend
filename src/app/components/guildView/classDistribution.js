@@ -36,7 +36,7 @@ function ClassDistribution({ guildList }) {
                         className="class-container"
                         style={{ background: "url(" + picture + ")" }}
                     >
-                        <span>{dist}</span>
+                        <span className="outline">{dist}</span>
                     </div>
                 ))}
             </div>
