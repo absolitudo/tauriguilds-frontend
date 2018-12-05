@@ -1,33 +1,43 @@
 import React from "react";
-import { connect } from "react-redux";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 import AllGuilds from "../allGuilds";
 import GuildView from "../guildView";
 import NotFound from "../notFound";
-import Error from "../error";
+import HandleError from "../handleError";
 
-function Routes({ error }) {
+function Routes() {
     return (
         <Router>
             <Switch>
-                {error.errorString && (
-                    <Route
-                        component={() => <Error msg={error.errorString} />}
-                    />
-                )}
-                <Route exact path="/" component={AllGuilds} />
-                <Route exact path="/guild" component={GuildView} />
-                <Route component={NotFound} />
+                <Route
+                    exact
+                    path="/"
+                    render={() => (
+                        <HandleError>
+                            <AllGuilds />
+                        </HandleError>
+                    )}
+                />
+                <Route
+                    exact
+                    path="/guild"
+                    render={() => (
+                        <HandleError>
+                            <GuildView />
+                        </HandleError>
+                    )}
+                />
+                <Route
+                    render={() => (
+                        <HandleError>
+                            <NotFound />
+                        </HandleError>
+                    )}
+                />
             </Switch>
         </Router>
     );
 }
 
-function mapStateToProps(state) {
-    return {
-        error: state.error
-    };
-}
-
-export default connect(mapStateToProps)(Routes);
+export default Routes;

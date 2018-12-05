@@ -53,3 +53,9 @@ export function changeGuildMembersFilter(payload) {
         payload
     };
 }
+
+export function removeError() {
+    return {
+        type: "REMOVE_ERROR"
+    };
+}
