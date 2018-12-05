@@ -144,6 +144,11 @@ class MembersTable extends React.Component {
             guildMembers.push(this.props.guildMembers[member]);
         }
 
+        guildMembers = sortGuildMembers(
+            filterGuildMembers(guildMembers, filter),
+            sort
+        );
+
         return (
             <section className="display-guild-members">
                 <Paper>
@@ -157,10 +162,7 @@ class MembersTable extends React.Component {
                                 data={guildMembersFilter}
                             />
                             <TableBody>
-                                {sortGuildMembers(
-                                    filterGuildMembers(guildMembers, filter),
-                                    sort
-                                )
+                                {guildMembers
                                     .slice(
                                         pagination.currentPage *
                                             pagination.rowsPerPage,
