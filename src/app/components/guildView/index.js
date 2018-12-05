@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import { withRouter } from "react-router-dom";
 import { serversToLower } from "./helpers";
 import LinearProgress from "@material-ui/core/LinearProgress";
 
@@ -91,4 +92,4 @@ function mapDispatchToProps(dispatch) {
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(GuildView);
+)(withRouter(GuildView));
