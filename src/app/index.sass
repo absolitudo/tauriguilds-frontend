@@ -4,7 +4,9 @@ $light-2: #EEEEEE
 $red: #a10500
 $green: #327435
 $blue: #0879ac
+$dark-blue: #00050a
 $mobile-brakepoint: 360px
+$footer-height: 100px
 
 @mixin default-shadow($red, $green, $blue)
     box-shadow: 0 2px 5px rgba($red, $green, $blue, 0.16), 0 2px 5px rgba($red, $green, $blue, 0.23)
@@ -16,11 +18,20 @@ $mobile-brakepoint: 360px
 @import "./components/showGuilds/index.sass"
 @import "./components/searchGuild/index.sass"
 @import "./components/guildView/index.sass"
+@import "./components/footer/index.sass"
+
+
+html
+    height: 100%
 
 body
+    min-height: 100%
+    position: relative
     padding: 0px
+    padding-bottom: $footer-height
     margin: 0px
     background-color: $light
+    
 *
     box-sizing: border-box
     color: $dark
@@ -28,6 +39,7 @@ body
 
 a
     text-decoration: none
+
 .red
     color: $red
 .green
