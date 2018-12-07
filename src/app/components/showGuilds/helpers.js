@@ -66,7 +66,7 @@ function sort(guilds, filters) {
     }
 }
 
-function getCurrProgNum(abbreviation) {
+export function getCurrProgNum(abbreviation) {
     return Number(/\d+/g.exec(abbreviation));
 }
 

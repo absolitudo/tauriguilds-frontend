@@ -17,6 +17,7 @@ import TextField from "@material-ui/core/TextField";
 import characterClasses from "../../../constants/characterClasses";
 import characterRaces from "../../../constants/characterRaces";
 import characterClassColors from "../../../constants/characterClassColors";
+import { name as currentRaid } from "../../../constants/currentRaid";
 import tauriUrl from "../../../constants/tauriUrl";
 import {
     filterGuildMembers,
@@ -74,6 +75,9 @@ function GuildMember({ member }) {
             <TableCell>{characterRaces[member.race]}</TableCell>
             <TableCell>{member.level}</TableCell>
             <TableCell>{member.rank_name}</TableCell>
+            <TableCell numeric>
+                {member.progression[currentRaid].abbreviation}
+            </TableCell>
         </TableRow>
     );
 }

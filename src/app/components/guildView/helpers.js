@@ -1,4 +1,6 @@
 import tmpServers from "../../../constants/servers.json";
+import { name as currentRaid } from "../../../constants/currentRaid";
+import { getCurrProgNum } from "../showGuilds/helpers";
 
 function serversToLower() {
     let servers = {};
@@ -33,10 +35,25 @@ function filterGuildMembers(guildMembers, filter) {
 }
 
 function sortGuildMembers(guildMembers, sort) {
+    let first = 1;
+    let second = -1;
     if (sort.direction === "asc") {
-        return guildMembers.sort((a, b) => (a[sort.by] < b[sort.by] ? -1 : 1));
+        first = -1;
+        second = 1;
     }
-    return guildMembers.sort((a, b) => (a[sort.by] > b[sort.by] ? -1 : 1));
+
+    if (sort.by === "progression") {
+        return guildMembers.sort((a, b) =>
+            getCurrProgNum(a[sort.by][currentRaid].abbreviation) <
+            getCurrProgNum(b[sort.by][currentRaid].abbreviation)
+                ? first
+                : second
+        );
+    }
+
+    return guildMembers.sort((a, b) =>
+        a[sort.by] < b[sort.by] ? first : second
+    );
 }
 
 function capitalizeString(string) {

@@ -19,6 +19,10 @@ const defaultState = {
         {
             id: "rank",
             label: "Rank"
+        },
+        {
+            id: "progression",
+            label: "Progression"
         }
     ],
     sort: {
