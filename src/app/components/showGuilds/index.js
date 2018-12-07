@@ -11,6 +11,7 @@ import LinearProgress from "@material-ui/core/LinearProgress";
 
 import { name as currentRaid } from "../../../constants/currentRaid";
 import factions from "../../../constants/factions";
+import { lastBoss } from "../../../constants/raidInfo";
 import { applyFilters } from "./helpers";
 import { convertServerName } from "./helpers";
 
@@ -35,7 +36,7 @@ function ShowGuilds({ guilds, filters }) {
                                     <span>Faction</span>
                                 </TableCell>
                                 <TableCell>
-                                    <span>Members</span>
+                                    <span>{lastBoss}</span>
                                 </TableCell>
                             </TableRow>
                         </TableHead>
@@ -75,7 +76,21 @@ function ShowGuilds({ guilds, filters }) {
                                         </TableCell>
 
                                         <TableCell numeric>
-                                            {guild.guildMembersCount}
+                                            {guild.progression[currentRaid][
+                                                lastBoss
+                                            ] ? (
+                                                <span className="green">
+                                                    {new Date(
+                                                        guild.progression[
+                                                            currentRaid
+                                                        ][lastBoss] * 1000
+                                                    ).toLocaleDateString()}
+                                                </span>
+                                            ) : (
+                                                <span className="red">
+                                                    Alive
+                                                </span>
+                                            )}
                                         </TableCell>
                                     </TableRow>
                                 )
