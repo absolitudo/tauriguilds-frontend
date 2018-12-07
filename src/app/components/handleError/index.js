@@ -17,7 +17,9 @@ function HandleError({ error, children, history, removeError }) {
                 removeError();
             });
         }
-
+        if (typeof error !== "string") {
+            error = "unexpected error occured";
+        }
         return (
             <section className="error">
                 <h1>Something went wrong :(</h1>
