@@ -62,3 +62,29 @@ a
     text-shadow: -1px -1px 0 $dark, 1px -1px 0 $dark, -1px 1px 0 $dark, 1px 1px 0 $dark
 a:hover
     text-decoration: underline !important
+
+.rotate
+    animation: rotate
+    animation-duration: 1s
+    animation-iteration-count: infinite
+
+.autorenew-updating
+    path
+        color: black !important
+    cursor: inherit !important
+
+.autorenew
+    path
+        color: $green
+    &:hover
+        path
+            color: black
+        cursor: pointer
+
+@keyframes rotate
+    from 
+        transform: rotate(0deg)
+  
+    to  
+        transform: rotate(360deg)
+  

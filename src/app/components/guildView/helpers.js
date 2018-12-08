@@ -61,11 +61,38 @@ function capitalizeString(string) {
     return newString;
 }
 
+function whenWas(time) {
+    const secondsAgo = new Date().getTime() / 1000 - Number(time);
+    const minutesAgo = Math.floor(secondsAgo / 60);
+    const hoursAgo = Math.floor(minutesAgo / 60);
+    const daysAgo = Math.floor(hoursAgo / 24);
+    const monthsAgo = Math.floor(daysAgo / 30);
+
+    if (monthsAgo) {
+        return monthsAgo + " month ago";
+    } else if (daysAgo) {
+        return daysAgo + " day ago";
+    } else if (hoursAgo) {
+        return hoursAgo + " hour ago";
+    } else if (minutesAgo) {
+        return minutesAgo + " minute ago";
+    }
+    return "just now";
+}
+
+function canUpdate(time) {
+    return (
+        Math.floor((new Date().getTime() / 1000 - Number(time)) / 60 / 60) > 2
+    );
+}
+
 export {
     serversToLower,
     mapInstanceToPicture,
     getClassPictures,
     filterGuildMembers,
     sortGuildMembers,
-    capitalizeString
+    capitalizeString,
+    whenWas,
+    canUpdate
 };

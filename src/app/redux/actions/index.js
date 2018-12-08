@@ -59,3 +59,17 @@ export function removeError() {
         type: "REMOVE_ERROR"
     };
 }
+
+export function setGuildUpdating(payload) {
+    return {
+        type: "SET_GUILD_UPDATING",
+        payload
+    };
+}
+
+export function setGuildUpdatingError(payload) {
+    return {
+        type: "SET_GUILD_UPDATING_ERROR",
+        payload
+    };
+}

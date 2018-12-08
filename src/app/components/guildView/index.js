@@ -11,6 +11,7 @@ import {
     setError
 } from "../../redux/actions";
 
+import GuildUpdate from "./guildUpdate";
 import Progression from "./progression";
 import ClassDistribution from "./classDistribution";
 import DisplayGuildMembers from "./displayGuildMembers";
@@ -60,7 +61,10 @@ class GuildView extends React.PureComponent {
                     </div>
                     <ClassDistribution guildList={guildData.guildList} />
                     <div className="guild-view-container">
-                        <Progression progression={guildData.progression} />
+                        <aside>
+                            <GuildUpdate />
+                            <Progression progression={guildData.progression} />
+                        </aside>
                         <DisplayGuildMembers />
                     </div>
                 </main>
